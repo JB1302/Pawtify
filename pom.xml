@@ -12,7 +12,7 @@
     <artifactId>pawtify</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Pawtify</name>
-    <description>Grupo #!</description>
+    <description>Grupo 1!</description>
     <url/>
     <licenses>
         <license/>
@@ -84,12 +84,6 @@
 
         <dependency>
             <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>5.3.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
             <version>3.7.1</version>
         </dependency>
@@ -111,6 +105,13 @@
             <artifactId>webjars-locator</artifactId>
             <version>0.52</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.3.6</version> <!-- o la versión que uses -->
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -118,7 +119,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>3.14.0</version>
                 <configuration>                  
                     <compilerArgs>
                         <arg>-Xlint</arg>
