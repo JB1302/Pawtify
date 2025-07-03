@@ -29,7 +29,7 @@ public class AuthController {
 
     @GetMapping("/register")
     public String registerForm() {
-        return "login/listado"; 
+        return "registrar/listado"; 
     }
 
     @PostMapping("/register")

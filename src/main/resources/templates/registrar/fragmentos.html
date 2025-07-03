@@ -1,0 +1,29 @@
+<head th:replace="~{layout/plantilla :: head}">
+
+<section th:fragment="registerPage">
+    <div class="container d-flex align-items-center justify-content-center min-vh-100">
+        <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+            <h3 class="text-center mb-4">Registrarse</h3>
+            <form th:action="@{/register}" method="post" autocomplete="off">
+                <div class="mb-3">
+                    <label for="registerNombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="registerNombre" name="nombre" placeholder="Nombre completo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerEmail" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Correo electrónico" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerPassword" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Contraseña" required>
+                </div>
+                <!-- Mensaje de error, si existe -->
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Crear cuenta</button>
+                    <a th:href="@{/login}" class="btn btn-outline-secondary">Volver al login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
