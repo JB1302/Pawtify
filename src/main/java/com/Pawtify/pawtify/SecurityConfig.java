@@ -20,7 +20,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                 .requestMatchers(
                         "/register", 
-                        "/login", 
+                        "/login",
+                        "/inicio/**",
+                        "/producto/**",
                         "/webjars/**",
                         "/css/**",
                         "/js/**"

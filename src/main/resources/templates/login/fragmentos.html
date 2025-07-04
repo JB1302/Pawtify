@@ -18,7 +18,14 @@
                     <label class="form-check-label" for="rememberMe">Recordarme</label>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    
+                    <!--
+                    
+                     <button type="submit" th:href="@{/register}" class="btn btn-primary">Ingresar</button>
+                   
+                    -->
+                    <a th:href="@{/inicio/listado}" class="btn btn-primary">Ingresar</a>
+                   
                     <a th:href="@{/register}" class="btn btn-outline-secondary">Registrarse</a>
                 </div>
             </form>

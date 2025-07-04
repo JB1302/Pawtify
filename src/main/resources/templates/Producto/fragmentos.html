@@ -1,0 +1,57 @@
+
+    <head th:replace="~{layout/plantilla :: head}">
+
+            <section th:fragment="inicio">
+                <div class="container d-flex align-items-center justify-content-center min-vh-100">
+
+                </div>
+            </section>
+
+            <section th:fragment="listadoCrudProductos" class="p-1">
+                <div class="row py-4 mb-2 text-center">
+                    <div class="col">
+
+                    </div>  
+                    <div class="col-9">
+                        <table class="table table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Tipo Mascota</th>
+                                    <th scope="col">Existencias</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Activo</th>
+                                    <th scope="col">acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <tr th:each="p : ${productos}">
+                                    <td>[[${p.id}]]</td>
+                                    <td>[[${p.nombre}]]</td>
+                                    <td>[[${p.descripcion}]]</td>
+                                    <td>[[${p.tipoMascota}]]</td>
+                                    <td>[[${p.stock}]]</td>
+                                    <td>[[${p.precio}]]</td>
+                                    <td>
+                                        <div class="row pb-1">
+                                            <div class="col">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>  
+                    <div class="col"></div>  
+                </div>
+            </section>
+  

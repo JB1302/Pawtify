@@ -95,3 +95,19 @@ CREATE TABLE stock_historial (
 /* Usuario Admin con acceso total */
 INSERT INTO usuarios (nombre, email, password, rol)
 VALUES ('Administrador', 'admin@demo.com', 'admin123', 'ADMIN');
+
+CREATE TABLE cliente (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    correo VARCHAR(255),
+    telefono VARCHAR(20)
+);
+
+CREATE TABLE mascota (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    especie VARCHAR(255),
+    raza VARCHAR(255),
+    cliente_id BIGINT,
+    FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+);
