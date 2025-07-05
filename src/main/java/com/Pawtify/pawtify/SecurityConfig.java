@@ -19,7 +19,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authz -> authz
                 .requestMatchers(
-                        "/register", 
+                        "/register",
                         "/login",
                         "/inicio/**",
                         "/producto/**",
@@ -31,6 +31,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                 .loginPage("/login")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
                 )
                 .logout(logout -> logout.permitAll());
