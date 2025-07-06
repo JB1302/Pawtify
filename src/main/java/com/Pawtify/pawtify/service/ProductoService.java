@@ -18,6 +18,16 @@ public class ProductoService {
         return productoRepo.findById(producto.getId()).orElse(null);
     }
     
+   
+    /*@Transactional(readOnly = true)
+    public List<Producto> Buscar(String palabra){
+        if(palabra != null){
+            return productoRepo.Buscar(palabra);
+        }
+        */
+    
+    
+    
     @Transactional(readOnly = true)
     public List<Producto> getProductos(){
         var lista = productoRepo.findAll();

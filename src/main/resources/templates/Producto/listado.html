@@ -5,10 +5,12 @@
 
     <head th:replace="~{layout/plantilla :: head}"/>
 
-    <body>
+    <body class="bg-light d-flex">
         <header th:replace="~{layout/plantilla :: header}"/>
-
+        <section th:replace="~{Producto/fragmentos :: inicio}"/>
         <section th:replace="~{Producto/fragmentos :: listadoCrudProductos}"/>
+        <section th:replace="~{Producto/fragmentos :: agregar}"/>
+        <section th:replace="~{Producto/fragmentos :: eliminar}"/>
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>
 </html>
