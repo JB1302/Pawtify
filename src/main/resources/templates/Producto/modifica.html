@@ -3,9 +3,8 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}"/>
-    <body>
+    <body class="bg-light d-flex">
         <header th:replace="~{layout/plantilla :: header}"/>
-        <section th:replace="~{Producto/fragmentos :: inicio}"/>
         <section th:replace="~{Producto/fragmentos :: editar}"/>
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>
