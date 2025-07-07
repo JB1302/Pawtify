@@ -144,6 +144,7 @@
                                                 th:data-bs-id="${p.id}">
                                             <i class="fa-sharp fa-solid fa-eraser"></i> Eliminar
                                         </button>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -159,38 +160,35 @@
 
 <section th:fragment="eliminar" class="px-5">
     <div class="modal fade" 
-                 id="eliminarModal" 
-                 tabindex="-1" 
-                 aria-labelledby="modalLabel" 
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered custom-modal-animation">
-                    <div class="modal-content animate-slide-up">
-                        <form th:action="@{/producto/eliminar}" th:object="${producto}" method="post">
-                            <input type="hidden" name="id" id="modalId"/>
-                            <div class="modal-header bg-danger text-white">
-                                <h5 class="modal-title" id="modalLabel">
-                                    <i class="fa-sharp fa-solid fa-triangle-exclamation"></i> Confirmar accion destructiva</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>La siguiente opción es irreversible: ¿Desea borrar este item?</p>
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Eliminar</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i>Cancelar</button>                                
-                            </div>
-                        </form>
+         id="eliminarModal" 
+         tabindex="-1" 
+         aria-labelledby="modalLabel" 
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered custom-modal-animation">
+            <div class="modal-content animate-slide-up">
+                <form th:action="@{/producto/eliminar}" th:object="${producto}" method="post">
+                    <input type="hidden" name="id" id="modalId"/>
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="modalLabel">
+                            <i class="fa-sharp fa-solid fa-triangle-exclamation"></i> Confirmar accion destructiva</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
-                </div>
+                    <div class="modal-body">
+                        <p>La siguiente opción es irreversible: ¿Desea borrar este item?</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i>Cancelar</button>                                
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
 </section>
 
 
 <section th:fragment="editar">
-
-    
-
     <div class="row py-4 mb-2 text-justified">
         <div class="col">
 
@@ -278,14 +276,7 @@
                 
                 
             </form>
-            <form th:action="@{/producto/eliminar}"
-                                              th:object="${producto}"
-                                              method="post">
-                                            <input type="hidden" name="id" th:value="${p.id}"/>
-                                            <button type="submit" class="btn btn-outline-warning"
-                                                    th:data-bs-id="${p.id}"><i class="fa-sharp fa-solid fa-file-pen"></i> Editar</button>
-                                        <input type="hidden" name="id" th:field="*{id}"/>
-                                        </form>
+            
         </div> 
         <div class="col"></div> 
     </div>
