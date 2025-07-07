@@ -30,29 +30,27 @@ public class ProductoController {
 
     @GetMapping("/listado")
     public String listado(Model model) {
-        var lista = productoService.getProductos();
+        var lista = productoService.getProductos(false);
         model.addAttribute("productos", lista);
+        model.addAttribute("totalProductos", lista.size());
+
         return "/producto/listado";
     }
 
-    /* Ejemplo de listado con filtro
-    public String listado(Model model, @Param("palabra") String palabra) {
-        var lista = productoService.Buscar(palabra);
-        model.addAttribute("productos", lista);
-        model.addAttribute("palabra", palabra);
-        return "/producto/listado";
-    }
-     */
     @PostMapping("/eliminar")
     public String eliminar(Producto producto, RedirectAttributes redirectAttributes) {
         producto = productoService.getProducto(producto);
+
         if (producto == null) {
-            redirectAttributes.addFlashAttribute("error", messageSource.getMessage("producto.error01", null, Locale.getDefault()));
+            redirectAttributes.addFlashAttribute("error", "Producto no encontrado.");
+        } else if (false) {
+            redirectAttributes.addFlashAttribute("error", "Error: producto tiene asociaciones.");
         } else if (productoService.delete(producto)) {
-            redirectAttributes.addFlashAttribute("todoOk", messageSource.getMessage("mensaje.eliminado", null, Locale.getDefault()));
+            redirectAttributes.addFlashAttribute("todoOk", "Producto eliminado correctamente.");
         } else {
-            redirectAttributes.addFlashAttribute("error", messageSource.getMessage("producto.error03", null, Locale.getDefault()));
+            redirectAttributes.addFlashAttribute("todoOk", "Error al eliminar el producto.");
         }
+
         return "redirect:/producto/listado";
     }
 
@@ -85,7 +83,6 @@ public class ProductoController {
         }
     }
 
-    
     @PostMapping("/carrito/agregar/{id}")
     public String agregarAlCarrito(
             @PathVariable Long id,
