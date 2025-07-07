@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:replace="~{layout/plantilla :: head}"/>
+
+    <body class="d-flex flex-column min-vh-100">
+
+        <main class="flex-grow-1 d-flex flex-column justify-content-center">
+
+            <section th:replace="~{registrar/fragmentos :: registerPage}"/>
+        </main>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>
