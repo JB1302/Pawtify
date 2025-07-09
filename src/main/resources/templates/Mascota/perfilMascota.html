@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Perfil de Mascota</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <header th:replace="~{layout/plantilla :: header}"></header>
+
+    <main class="container my-5 flex-grow-1">
+        <h2>Perfil de la Mascota</h2>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="row g-0">
+                <div class="col-md-4 text-center p-3">
+                    <img th:src="${mascota.foto != null} ? @{/images/mascotas/{foto}(foto=${mascota.foto})} : @{/images/mascotas/mascota-default.png}" 
+                         class="img-fluid rounded-circle border border-3" 
+                         alt="Foto de la mascota" 
+                         style="width: 200px; height: 200px; object-fit: cover;" />
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="${mascota.nombre}"></h3>
+                        <p class="card-text">
+                            <strong>Especie:</strong> <span th:text="${mascota.especie}"></span><br>
+                            <strong>Raza:</strong> <span th:text="${mascota.raza}"></span><br>
+                            <strong>Edad:</strong> <span th:text="${mascota.edad}"></span> años<br>
+                            <strong>Género:</strong> <span th:text="${mascota.genero}"></span><br>
+                            <strong>Color:</strong> <span th:text="${mascota.color}"></span><br>
+                            <strong>Dueño:</strong> <span th:text="${mascota.cliente.nombre}"></span><br>
+                        </p>
+                        <div class="mt-4">
+                            <a th:href="@{'/mascota/editar/' + ${mascota.id}}" class="btn btn-primary me-2">Editar</a>
+                            <a th:href="@{'/mascota/eliminar/' + ${mascota.id}}" 
+                               class="btn btn-danger"
+                               onclick="return confirm('¿Estás segura de eliminar esta mascota?')">Eliminar</a>
+                            <a th:href="@{/mascota/listado}" class="btn btn-secondary">Volver al listado</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

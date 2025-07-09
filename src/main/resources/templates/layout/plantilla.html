@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:fragment="head">
+        <title>Pawtify</title>
+        <meta charset="UTF-8"/>
+
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css"/>
+
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+
+    <body>
+
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                    <a class="navbar-brand fw-bold" href="/">Pawtify</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/producto/listado}">Productos</a>
+                            </li>
+
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/producto/carrito}">
+                                    <i class="fas fa-shopping-cart"></i> Carrito
+                                    <span class="badge bg-danger ms-1"
+                                          th:text="${session.carritoItems != null ? session.carritoItems.size() : 0}">0</span>
+                                </a>
+                            </li>
+
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/mascota/listado}">Mascotas</a>
+                            </li>
+
+                        </ul>
+
+                        <div class="d-flex">
+                            <!-- Solo muestra si NO está autenticado -->
+                            <a class="btn btn-outline-light me-2" th:href="@{/login}" sec:authorize="!isAuthenticated()">Iniciar sesión</a>
+                            <a class="btn btn-warning" th:href="@{/register}" sec:authorize="!isAuthenticated()">Registrarse</a>
+
+                            <!-- Solo muestra si está autenticado -->
+                            <a class="btn btn-success" href="#" sec:authorize="isAuthenticated()">
+                                <i class="fas fa-user"></i> Mi cuenta
+                            </a>
+                            <a class="btn btn-outline-danger ms-2" th:href="@{/logout}" sec:authorize="isAuthenticated()">Cerrar sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- FOOTER PRINCIPAL -->
+        <footer class="bg-secondary text-center mt-auto">
+            <div class="container pt-3"></div>
+            <div class="bg-primary text-center p-3 text-white">
+                <i class="fa-solid fa-copyright"></i> 2025 <span>Pawtify</span>
+                <a class="text-white" href="/">Pawtify.com</a>
+            </div>
+        </footer>
+
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<head th:replace="~{layout/plantilla :: head}" />
+<section th:fragment="loginPage">
+    <div class="container d-flex align-items-center justify-content-center min-vh-100">
+        <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+            <h3 class="text-center mb-4">Iniciar sesión</h3>
+            <form th:action="@{/login}" method="post" autocomplete="off">
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="loginEmail" name="username" placeholder="Correo" required autofocus>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Contraseña" required>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
+                    <label class="form-check-label" for="rememberMe">Recordarme</label>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <a th:href="@{/register}" class="btn btn-outline-secondary">Registrarse</a>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--PerfilMascota-->
+<div th:fragment="perfilMascota">
+    <div class="card mb-4 shadow-sm">
+        <div class="row g-0">
+            <div class="col-md-4 text-center p-3">
+                <img th:src="@{'/images/mascotas/' + ${mascota.foto}}" 
+                     class="img-fluid rounded-circle border border-3" 
+                     alt="Foto de la mascota" 
+                     style="width: 200px; height: 200px; object-fit: cover;">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title" th:text="${mascota.nombre}">Nombre Mascota</h3>
+                    <p class="card-text">
+                        <strong>Especie:</strong> <span th:text="${mascota.especie}">Perro</span><br>
+                        <strong>Raza:</strong> <span th:text="${mascota.raza}">Labrador</span><br>
+                        <strong>Edad:</strong> <span th:text="${mascota.edad}">4</span> años<br>
+                        <strong>Género:</strong> <span th:text="${mascota.genero}">Macho</span><br>
+                        <strong>Color:</strong> <span th:text="${mascota.color}">Dorado</span><br>
+                    </p>
+                    <div class="mt-4">
+                        <a th:href="@{'/mascota/editar/' + ${mascota.id}}" class="btn btn-primary me-2">Editar</a>
+                        <a th:href="@{'/mascota/eliminar/' + ${mascota.id}}" 
+                           class="btn btn-danger"
+                           onclick="return confirm('¿Estás segura de eliminar esta mascota? 😢')">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
