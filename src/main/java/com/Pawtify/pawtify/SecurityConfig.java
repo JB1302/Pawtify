@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .logout(logout -> logout
                 .logoutUrl("/logout") 
                 .logoutSuccessUrl("/login")
-                .permitAll()
+                .permitAll() //Permitir a cualquier desloguearse
                 );
 
         return http.userDetailsService(userDetailsServiceImpl).build();
