@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author jstev
  */
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long> {
+    // Busca un usuario por su email. Devuelve Optional por si no existe el usuario.
     Optional<User> findByEmail(String email);
 }

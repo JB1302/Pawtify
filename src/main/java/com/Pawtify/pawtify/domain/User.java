@@ -13,10 +13,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Data;
 
-/**
- *
- * @author jstev
- */
+//Tabla de Configuracion
 @Data
 @Entity
 @Table(name = "usuarios")

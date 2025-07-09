@@ -14,13 +14,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+    // Este método se llama automáticamente al intentar hacer login
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        // Busca el usuario por email. Si no existe, lanza excepción.
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
+        // Devuelve un objeto UserDetails listo para que Spring Security valide el login
         return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail()) 
+                .withUsername(user.getEmail())
                 .password(user.getPassword())
                 .roles(user.getRol() != null ? user.getRol().toUpperCase() : "CLIENTE")
                 .build();
