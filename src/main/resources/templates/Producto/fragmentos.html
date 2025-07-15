@@ -10,12 +10,16 @@
             </button>
         </div>
         <div class="align-self-center">
-            <form>
+            <form method="post" th:action="@{/producto/busqueda}"
+                          class="was-validated">
                 <div class="d-flex flew-row justify-content-evenly">
-                    <input type="text" class="form-control" id="exampleInputBuscar">
-                    <button type="button" class="btn btn-outline-primary mx-1"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-                    <button type="button" class="btn btn-outline-danger"><i class="fa-sharp fa-solid fa-xmark"></i></button>
+                    <input type="text" class="form-control" th:value="${texto}" name="texto">
+                    
+                    <button type="submit" class="btn btn-outline-primary mx-1"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                    <a href="/producto/listado"  class="btn btn-outline-danger"><i class="fa-sharp fa-solid fa-xmark"></i></a>
                 </div>
+                
+                
             </form>
         </div>
     </div>

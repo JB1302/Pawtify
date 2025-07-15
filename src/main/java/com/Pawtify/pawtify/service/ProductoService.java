@@ -55,4 +55,10 @@ public class ProductoService {
             return false;
         }
     }
+    
+    @Transactional(readOnly = true)
+    public List<Producto> consultaSQL(String texto) {
+
+        return productoRepository.ConsultaSQL(texto);
+    }
 }

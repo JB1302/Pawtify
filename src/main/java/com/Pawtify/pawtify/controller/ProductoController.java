@@ -92,4 +92,15 @@ public class ProductoController {
         redirect.addFlashAttribute("success", "Producto agregado al carrito");
         return "redirect:/producto/listado";
     }
+    
+    @PostMapping("/busqueda")
+    public String query3( @RequestParam() String texto, Model model) {
+        var productos=productoService.consultaSQL(texto);
+        model.addAttribute ("productos", productos);
+        model.addAttribute ("texto", texto);
+
+       
+
+        return "/producto/listado";
+    }
 }
