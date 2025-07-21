@@ -96,6 +96,7 @@ CREATE TABLE stock_historial (
 INSERT INTO usuarios (nombre, email, password, rol)
 VALUES ('Administrador', 'admin@demo.com', 'admin123', 'ADMIN');
 
+/* Tablas para clientes y mascotas */
 CREATE TABLE cliente (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255),
@@ -103,11 +104,16 @@ CREATE TABLE cliente (
     telefono VARCHAR(20)
 );
 
+/* Tabla mascota mejorada */
 CREATE TABLE mascota (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255),
+    nombre VARCHAR(255) NOT NULL,
     especie VARCHAR(255),
     raza VARCHAR(255),
+    color VARCHAR(50),
+    edad INT,
+    peso DECIMAL(5,2),
+    tamano VARCHAR(50),
     cliente_id BIGINT,
-    FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+    FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON DELETE SET NULL
 );

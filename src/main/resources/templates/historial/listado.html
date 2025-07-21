@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:replace="~{layout/plantilla :: head}"/>
+
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <!--Body Principal-->
+        <main class="container my-5">
+            <section class="row">
+                <!-- Solo muestra Stock Historial si es admin -->
+                <div class="col-md-6" sec:authorize="hasRole('ADMIN')">
+                    <section th:replace="~{historial/fragmentos :: historial}"/>
+                </div>
+                <!-- Si es admin: col-md-6, si no: col-12 ocupa todo -->
+                <div th:classappend="${#authorization.expression('hasRole(''ADMIN'')')} ? 'col-md-6' : 'col-12'">
+                    <section th:replace="~{historial/fragmentos :: Pedidos}"/>
+                </div>
+            </section>
+        </main>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

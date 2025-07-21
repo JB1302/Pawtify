@@ -35,6 +35,8 @@ public class ClienteController {
     public String mostrarFormularioMascota(@PathVariable Long id, Model model) {
         Cliente cliente = clienteService.buscarPorId(id).orElse(null);
         if (cliente == null) return "redirect:/cliente/nuevo?error";
+
+
         Mascota mascota = new Mascota();
         mascota.setCliente(cliente);
         model.addAttribute("mascota", mascota);
@@ -43,7 +45,8 @@ public class ClienteController {
 
     @PostMapping("/mascota/guardar")
     public String guardarMascota(@ModelAttribute Mascota mascota) {
-        mascotaService.guardarMascota(mascota);
+        mascotaService.save(mascota); 
         return "redirect:/cliente/" + mascota.getCliente().getId() + "/mascota?exito";
     }
 }
+

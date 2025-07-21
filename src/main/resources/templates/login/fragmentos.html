@@ -1,6 +1,13 @@
-<head th:replace="~{layout/plantilla :: head}">
+<head th:replace="~{layout/plantilla :: head}"></head>
 
 <section th:fragment="loginPage">
+    <!-- Mensaje de error si login falla -->
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">
+            Usuario o contraseña incorrectos.
+        </div>
+    </div>
+
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
         <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
             <h3 class="text-center mb-4">Iniciar sesión</h3>
@@ -21,7 +28,6 @@
                     <button type="submit" class="btn btn-primary">Ingresar</button>
                     <a th:href="@{/register}" class="btn btn-outline-secondary">Registrarse</a>
                 </div>
-
             </form>
             <div class="text-center mt-3">
                 <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
@@ -29,4 +35,3 @@
         </div>
     </div>
 </section>
-

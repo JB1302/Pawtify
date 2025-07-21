@@ -21,37 +21,37 @@ public class SecurityConfig {
         // Configuración de las reglas de autorización
         http
                 .authorizeHttpRequests(authz -> authz
-                // Permite el acceso sin autenticación a estas rutas
-                .requestMatchers(
-                        "/", //Pagina Principal
-                        "/register", //Pagina Registrar
+                    // Permite el acceso sin autenticación a estas rutas
+                    .requestMatchers(
+                        "/", // Pagina Principal
+                        "/register", // Pagina Registrar
                         "/login", // Pagina Login
-                        "/inicio/**", //Inicio ?
-                        "/webjars/**", //Bootsrap
-                        "/css/**", //CSS
-                        "/js/**" //JS
-                ).permitAll()
-                // Cualquier otra ruta requiere autenticación
-                .anyRequest().authenticated()
+                        "/inicio/**", // Inicio
+                        "/webjars/**", // Bootsrap
+                        "/css/**", // CSS
+                        "/js/**" // JS
+                    ).permitAll()
+                    // Cualquier otra ruta requiere autenticación
+                    .anyRequest().authenticated()
                 )
                 // Configura el login
                 .formLogin(form -> form
-                .loginPage("/login") // Página personalizada de login
-                .defaultSuccessUrl("/", true) // Redirige al inicio después de login
-                .permitAll() // Permite acceso a todos al login
+                    .loginPage("/login") // Página personalizada de login
+                    .defaultSuccessUrl("/", true) // Redirige al inicio después de login
+                    .failureUrl("/login?error") // <-- ¡Esto se debe mantener!
+                    .permitAll() // Permite acceso a todos al login
                 )
-                
                 // Permite logout para todos
                 .logout(logout -> logout
-                .logoutUrl("/logout") 
-                .logoutSuccessUrl("/login")
-                .permitAll() //Permitir a cualquier desloguearse
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login")
+                    .permitAll() // Permitir a cualquier desloguearse
                 );
 
         return http.userDetailsService(userDetailsServiceImpl).build();
     }
 
-    //Codificar Contraseñas
+    // Codificar Contraseñas
     @Bean
     public PasswordEncoder passwordEncoder() {
         // BCrypt genera contraseñas cifradas seguras

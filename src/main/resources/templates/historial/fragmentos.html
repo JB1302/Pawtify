@@ -1,0 +1,85 @@
+<section th:fragment="historial" sec:authorize="hasRole('ADMIN')">
+    <div class="container-fluid my-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="bg-primary text-white rounded shadow px-4 py-3 mb-0 w-100 d-flex align-items-center">
+                    <i class="fa-solid fa-cubes me-3"></i>
+                    Stock Historial
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row py-4 mb-2 text-center">
+        <div class="col"></div>  
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">ID Producto</th>
+                        <th scope="col">Cambio</th>
+                        <th scope="col">Motivo</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="h : ${historial}">
+                        <td>[[${h.id}]]</td>
+                        <td>[[${h.id_producto}]]</td>
+                        <td>[[${h.cambio}]]</td>
+                        <td>[[${h.motivo}]]</td>
+                        <td>[[${#temporals.format(h.fecha, 'yyyy-MM-dd HH:mm')}]]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>  
+        <div class="col"></div>  
+    </div>
+</section>
+
+
+
+
+<section th:fragment="Pedidos">
+    <div class="container-fluid my-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="bg-primary text-white rounded shadow px-4 py-3 mb-0 w-100 d-flex align-items-center">
+                    <i class="fa-solid fa-cubes me-3"></i>
+                    Pedidos Historial
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row py-4 mb-2 text-center">
+        <div class="col"></div>  
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr th:each="p : ${pedidos}">
+                        <td th:text="${p.id}">ID</td>
+                        <td th:text="${p.usuario.nombre}">Usuario</td>
+                        <td th:text="${#temporals.format(p.fecha, 'yyyy-MM-dd HH:mm')}">Fecha</td>
+                        <td th:text="${p.total}">Total</td>
+                        <td th:text="${p.estado}">Estado</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>  
+        <div class="col"></div>  
+    </div>
+</section>
+
