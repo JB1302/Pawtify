@@ -23,5 +23,156 @@
                      class="img-fluid rounded-4 shadow" alt="Mascota feliz con productos" style="max-height: 350px;">
             </div>
         </div>
+
+    </div>
+</section>
+
+
+<section th:fragment="AboutUs">
+    <div class="bg-secondary p-4 my-5 text-white text-center">
+        <h2 class="fw-bold">¿Qué Hacemos?</h2>
+        <div class="mx-auto" style="max-width: 800px;">
+            <p class="m-5 fs-4" style="text-align: justify; text-align-last: center;">
+                Somos una empresa dedicada a ofrecer soluciones innovadoras para animales. 
+                Nuestro objetivo es brindar un servicio de calidad, adaptándonos a las necesidades de cada cliente 
+                y manteniendo la excelencia en todo lo que hacemos.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<section th:fragment="Features">
+    <div class="container py-5">
+        <div class="text-center">
+            <h2 class="fw-bold">¿Por qué elegir Pawtify?</h2>
+            <p class="text-muted">Lo mejor para tu mascota, en un solo lugar.</p>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="p-4 shadow rounded-4 bg-primary">
+                   <i class="bi bi-truck fs-1 text-white"></i>
+
+                    <h4 class="mt-3 text-white fw-bold">Gran Variedad</h4>
+                    <p class="text-white">Encuentra desde comida premium hasta juguetes y accesorios únicos para consentir a tu amigo peludo.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 shadow rounded-4 bg-primary">
+                    <i class="bi bi-shield-check fs-1 text-white"></i>
+                    <h4 class="mt-3 text-white fw-bold">Envíos Rápidos</h4>
+                    <p class="text-white">Recibe tu pedido en tiempo récord con nuestro servicio de entrega a domicilio seguro y confiable.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 shadow rounded-4 bg-primary">
+                    <i class="bi bi-shield-check fs-1 text-primary"></i>
+                    <h4 class="mt-3 text-white fw-bold">Calidad Garantizada</h4>
+                    <p class="text-white">Trabajamos solo con marcas y productos de primera calidad para la salud y felicidad de tu mascota.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="Testimonials">
+    <div class="container py-5 bg-primary rounded-4 shadow-sm mb-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-white">Lo que dicen nuestros clientes</h2>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm">
+                    <p class="mb-3">“Excelente calidad y servicio, mi perro ama la comida de Pawtify.”</p>
+                    <h5 class="fw-bold">– Laura G.</h5>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm">
+                    <p class="mb-3">“Llegó todo rapidísimo y bien empacado. Muy recomendado.”</p>
+                    <h5 class="fw-bold">– Carlos M.</h5>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm">
+                    <p class="mb-3">“Los juguetes son de excelente calidad, a mi gato le encantan.”</p>
+                    <h5 class="fw-bold">– Sofía P.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section th:fragment="CTA">
+    <div class="container text-center py-5">
+        <div class="bg-primary text-white p-5 rounded-4 shadow">
+            <h2 class="fw-bold mb-3">¿Listo para consentir a tu mascota?</h2>
+            <p class="mb-4">Explora nuestro catálogo y encuentra lo mejor para tu peludo amigo.</p>
+            <a href="/producto/listado" class="btn btn-lg btn-light text-primary fw-bold">Ver catálogo</a>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="Newsletter">
+    <div class="container text-center my-5">
+        <div class="bg-light p-4 rounded-4 shadow">
+            <h2 class="fw-bold">¡Mantente al día!</h2>
+            <p>Suscríbete para recibir ofertas y novedades de Pawtify.</p>
+            <form class="d-flex justify-content-center">
+                <input type="email" class="form-control w-50 me-2" placeholder="Tu correo">
+                <button class="btn btn-primary" type="submit">Suscribirme</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+<section th:fragment="FAQ">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Preguntas Frecuentes</h2>
+        </div>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                        ¿Cuánto tarda el envío?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Generalmente entre 24 y 72 horas hábiles, dependiendo de la zona.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        ¿Tienen productos para gatos y perros?
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Sí, contamos con una amplia gama de productos para ambos.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        ¿Ofrecen devoluciones?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Sí, aceptamos devoluciones dentro de los 7 días posteriores a la compra, siempre que el producto esté sin usar y en su empaque original.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

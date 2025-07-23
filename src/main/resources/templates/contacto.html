@@ -2,60 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Formulario de Contacto</title>
-   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
+    <header th:replace="~{layout/plantilla :: header}"></header>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <div class="card shadow-lg rounded-4">
-                    <div class="card-body">
-                        <h2 class="text-center mb-4 text-primary">📬 Formulario de Contacto</h2>
+    <main class="d-flex align-items-center justify-content-center flex-grow-1">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow-lg rounded-4">
+                        <div class="card-body">
+                            <h2 class="text-center mb-4 text-primary">📬 Formulario de Contacto</h2>
 
-                        <div th:if="${exito}" class="alert alert-success text-center" th:text="${exito}"></div>
+                            <div th:if="${exito}" class="alert alert-success text-center" th:text="${exito}"></div>
 
-                        <form th:action="@{/contacto/enviar}" method="post" th:object="${mensaje}">
+                            <form th:action="@{/contacto/enviar}" method="post" th:object="${mensaje}">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre:</label>
+                                    <input type="text" th:field="*{nombre}" class="form-control" placeholder="Tu nombre" required>
+                                </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Nombre:</label>
-                                <input type="text" th:field="*{nombre}" class="form-control" placeholder="Tu nombre" required>
+                                <div class="mb-3">
+                                    <label class="form-label">Correo:</label>
+                                    <input type="email" th:field="*{correo}" class="form-control" placeholder="tunombre@correo.com" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Asunto:</label>
+                                    <input type="text" th:field="*{asunto}" class="form-control" placeholder="¿Sobre qué es tu mensaje?" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Mensaje:</label>
+                                    <textarea th:field="*{mensaje}" class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
+                                </div>
+                            </form>
+
+                            <!-- Botón para volver al inicio -->
+                            <div class="d-grid mt-3">
+                                <a href="/" class="btn btn-outline-secondary btn-sm">⬅️ Volver al Inicio</a>
                             </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Correo:</label>
-                                <input type="email" th:field="*{correo}" class="form-control" placeholder="tunombre@correo.com" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Asunto:</label>
-                                <input type="text" th:field="*{asunto}" class="form-control" placeholder="¿Sobre qué es tu mensaje?" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Mensaje:</label>
-                                <textarea th:field="*{mensaje}" class="form-control" rows="5" placeholder="Escribí tu mensaje aquí..." required></textarea>
-                            </div>
-
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
-                            </div>
-                        </form>
-
-                        <!-- Botón para volver al inicio -->
-                        <div class="d-grid mt-3">
-                            <a href="/" class="btn btn-outline-secondary btn-sm">
-                                ⬅️ Volver al Inicio
-                            </a>
                         </div>
                     </div>
+                    <p class="text-center mt-3 text-muted">Gracias por comunicarte con nosotros</p>
                 </div>
-                <p class="text-center mt-3 text-muted">Gracias por comunicarte con nosotros </p>
             </div>
         </div>
-    </div>
+    </main>
+
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -4,12 +4,13 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
     <head th:replace="~{layout/plantilla :: head}"/>
-    <body class="bg-light d-flex">
+    <body class="bg-light d-flex flex-column">
         <header th:replace="~{layout/plantilla :: header}"/>
-        <section th:replace="~{Producto/fragmentos :: inicio}"/>
-        <section th:replace="~{Producto/fragmentos :: listadoCrudProductos}"/>
-        <section th:replace="~{Producto/fragmentos :: agregar}"/>
-        <section th:replace="~{Producto/fragmentos :: eliminar}"/>
+        <main>
+            <section th:replace="~{Producto/fragmentos :: inicio}"/>
+            <section th:replace="~{Producto/fragmentos :: listadoCrudProductos}"/>
+            <section th:replace="~{Producto/fragmentos :: agregar}"/>
+            <section th:replace="~{Producto/fragmentos :: eliminar}"/>
+        </main>
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>
-</html>

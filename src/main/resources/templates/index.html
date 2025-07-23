@@ -2,18 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    
+
     <head th:replace="~{layout/plantilla :: head}"/>
-    
+
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        
-                <!-- Boton de Agregar -->
 
-                
+        <!-- Boton de Agregar -->
+
+
         <section th:replace="~{Inicio/fragmentos :: Hero}"/> 
+        <section th:replace="~{Inicio/fragmentos :: CTA}"/> 
+        <section th:replace="~{Inicio/fragmentos :: Features}"/> 
+        <section th:replace="~{Inicio/fragmentos :: AboutUs}"/> 
+        <section th:replace="~{Inicio/fragmentos :: Testimonials}"/> 
+        <section th:replace="~{Inicio/fragmentos :: FAQ}"/> 
+        <section th:replace="~{Inicio/fragmentos :: Newsletter}"/> 
 
-        
+
+
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>
 </html>
