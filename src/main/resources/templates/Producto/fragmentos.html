@@ -98,39 +98,54 @@
                         <th scope="col">Tipo Mascota</th>
                         <th scope="col">Existencias</th>
                         <th scope="col">Precio</th>
+                        <th scope="col">Estado Stock</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    <tr th:each="p : ${productos}">
+                    <tr th:each="p : ${productos}" th:class="${p.stock < umbralStock} ? 'table-warning' : ''">
                         <td>[[${p.id}]]</td>
-                        <td>[[${p.nombre}]]</td>
+                        <td>
+                            <span th:if="${p.stock < umbralStock}" class="text-danger fw-bold">⚠️ </span>
+                            [[${p.nombre}]]
+                        </td>
                         <td>[[${p.descripcion}]]</td>
                         <td>[[${p.tipoMascota}]]</td>
-                        <td>[[${p.stock}]]</td>
-                        <td>[[${p.precio}]]</td>
-                        <td>[[${p.activo}]]</td>
+                        <td th:class="${p.stock < umbralStock} ? 'fw-bold text-danger' : ''">
+                            [[${p.stock}]]
+                        </td>
+                        <td>$[[${#numbers.formatDecimal(p.precio, 1, 2)}]]</td>
+                        <td>
+                            <span th:if="${p.stock < umbralStock}" class="badge bg-danger">
+                                ¡STOCK BAJO!
+                            </span>
+                            <span th:if="${p.stock >= umbralStock}" class="badge bg-success">
+                                OK
+                            </span>
+                        </td>
+                        <td>[[${p.activo} ? 'Sí' : 'No']]</td>
                         <td>
                             <div class="text-center">
                                 <div class="row">
                                     <div class="col">
                                         <form th:action="@{/producto/modificar}" th:object="${producto}" method="post">
                                             <input type="hidden" name="id" th:value="${p.id}"/>
-                                            <button type="submit" class="btn btn-outline-warning">
+                                            <button type="submit" class="btn btn-outline-warning btn-sm">
                                                 <i class="fa-sharp fa-solid fa-file-pen"></i> Editar
                                             </button>
                                         </form>
                                     </div>
                                     <div class="col">
-                                        <!-- Botón que abre el modal único de cada producto -->
+                                        <!-- Botón que abre el modal de eliminación -->
                                         <button type="button"
-                                            class="btn btn-outline-danger"
+                                            class="btn btn-outline-danger btn-sm"
                                             data-bs-toggle="modal"
                                             th:data-bs-target="'#eliminarModal' + ${p.id}">
                                             <i class="fa-sharp fa-solid fa-eraser"></i> Eliminar
                                         </button>
 
+                                        <!-- Modal de eliminación -->
                                         <div class="modal fade"
                                              th:id="'eliminarModal' + ${p.id}"
                                              tabindex="-1"
@@ -145,7 +160,7 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Esta acción no se puede deshacer. ¿Seguro que quieres borrar el producto?</p>
+                                                            <p>Esta acción no se puede deshacer. ¿Seguro que quieres borrar "[[${p.nombre}]]"?</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -155,7 +170,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

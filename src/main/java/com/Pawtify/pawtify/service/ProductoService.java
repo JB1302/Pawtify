@@ -10,7 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductoService {
-
+    
+    public Producto getProductoById(Long id) {
+    // Implementación básica - asegúrate que tu servicio tenga esto
+    return productoRepository.findById(id).orElse(null);
+}
 
     @Autowired
     private ProductoRepository productoRepository;

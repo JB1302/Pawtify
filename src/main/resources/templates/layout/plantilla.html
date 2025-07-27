@@ -10,6 +10,31 @@
     <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
     <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css"/>
 
+    <style>
+        /* Alertas de stock */
+        .table-danger {
+            --bs-table-bg: #ffebee;
+            --bs-table-striped-bg: #ffcdd2;
+            --bs-table-active-bg: #ef9a9a;
+            --bs-table-hover-bg: #ffcdd2;
+            color: #000;
+        }
+        .text-stock-danger {
+            color: #dc3545 !important;
+            font-weight: bold;
+        }
+        .badge-stock {
+            font-size: 0.75em;
+            padding: 0.35em 0.65em;
+            background-color: #dc3545 !important;
+            color: white;
+        }
+        .stock-warning-icon {
+            color: #dc3545;
+            margin-right: 5px;
+        }
+    </style>
+    
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
