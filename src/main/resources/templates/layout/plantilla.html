@@ -77,19 +77,19 @@
                 </ul>
 
                 <div class="d-flex align-items-center">
-                    <!-- Nombre usuario si está autenticado -->
+                   
                     <span class="me-3 fw-bold text-white" sec:authorize="isAuthenticated()">
                         <i class="fas fa-user"></i> <span sec:authentication="name"></span>
                     </span>
 
-                    <!-- Si NO autenticado -->
+                   
                     <a class="btn btn-outline-light me-2" th:href="@{/login}" sec:authorize="!isAuthenticated()">Iniciar sesión</a>
                     <a class="btn btn-warning" th:href="@{/register}" sec:authorize="!isAuthenticated()">Registrarse</a>
 
-                    <!-- Si autenticado -->
+                   
                     <a class="btn btn-success" href="#" sec:authorize="isAuthenticated()">Mi cuenta</a>
 
-                    <!-- Botón logout POST -->
+                   
                     <form th:action="@{/logout}" method="post" 
                           th:if="${#authorization.expression('isAuthenticated()')}" style="display:inline;">
                         <button type="submit" class="btn btn-outline-danger ms-2">Cerrar sesión</button>
@@ -104,7 +104,7 @@
 <footer class="bg-secondary text-white mt-auto">
     <div class="container py-5">
         <div class="row align-items-center">
-            <!-- Columna Newsletter -->
+           
             <div class="col-md-6 mb-4 mb-md-0">
                 <h5 class="fw-bold">Suscríbete a nuestras novedades</h5>
                 <p class="text-white-50 mb-3">Recibe ofertas exclusivas y las últimas noticias de Pawtify.</p>
@@ -114,7 +114,7 @@
                 </form>
             </div>
             
-            <!-- Columna enlaces -->
+            
             <div class="col-md-6 text-md-end text-center">
                 <a href="/producto/listado" class="text-white me-3">Productos</a>
                 <a href="/contacto" class="text-white me-3">Contacto</a>
@@ -123,7 +123,7 @@
         </div>
     </div>
     
-    <!-- Línea de copyright -->
+   
     <div class="bg-primary text-center p-3">
         <i class="fa-solid fa-copyright"></i> 2025 <span class="fw-bold">Pawtify</span>
         <a class="text-white text-decoration-none" href="/">Pawtify.com</a>

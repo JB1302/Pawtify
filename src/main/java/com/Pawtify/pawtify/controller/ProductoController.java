@@ -31,7 +31,7 @@ public String listado(Model model) {
     var lista = productoService.getProductos(false);
     final int UMBRAL_STOCK = 10;
     
-    // Solo para debug - verifica en consola
+    
     System.out.println("=== PRODUCTOS CON STOCK BAJO ===");
     lista.stream()
          .filter(p -> p.getStock() < UMBRAL_STOCK)
