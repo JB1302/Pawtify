@@ -10,6 +10,7 @@
 
         <!--Body Principal-->
         <main class="container my-5">
+            <section th:replace="~{historial/fragmentos :: busqueda}"/>
             <section class="row">
                 <!-- Solo muestra Stock Historial si es admin -->
                 <div class="col-md-6" sec:authorize="hasRole('ADMIN')">

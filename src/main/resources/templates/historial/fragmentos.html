@@ -10,7 +10,6 @@
         </div>
     </div>
 
-
     <div class="row py-4 mb-2 text-center">
         <div class="col"></div>  
         <div class="col-12">
@@ -82,4 +81,19 @@
         <div class="col"></div>  
     </div>
 </section>
+
+<section th:fragment="busqueda">
+    <div class="align-self-center">
+        <form method="post" th:action="@{/historial/busqueda}"
+              class="was-validated">
+            <div class="d-flex flew-row justify-content-evenly">
+                <input type="text" class="form-control" th:value="${texto}" name="texto">
+
+                <button type="submit" class="btn btn-outline-primary mx-1"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                <a href="/historial/listado"  class="btn btn-outline-danger"><i class="fa-sharp fa-solid fa-xmark"></i></a>
+            </div>
+        </form>
+    </div>
+</section>
+
 

@@ -68,13 +68,27 @@
 <body>
         <header th:replace="~{layout/plantilla :: header}"/>
 
-    <main>
-        <div class="container p-4 bg-white rounded shadow" style="max-width: 900px;">
-            <h1 class="text-center mb-4 text-primary">🐶 Lista de Mascotas</h1>
-            <div class="d-flex justify-content-between mb-3">
-                <a class="btn btn-celeste" th:href="@{/mascotas/nueva}">➕ Agregar nueva mascota</a>
-                <a class="btn btn-celeste" th:href="@{/}">🏠 Volver al inicio</a>
-            </div>
+        <main>
+            <div class="container p-4 bg-white rounded shadow" style="max-width: 900px;">
+                <h1 class="text-center mb-4 text-primary">🐶 Lista de Mascotas</h1>
+                <div class="d-flex justify-content-between mb-3">
+                    <a class="btn btn-celeste" th:href="@{/mascotas/nueva}">➕ Agregar nueva mascota</a>
+                    <a class="btn btn-celeste" th:href="@{/}">🏠 Volver al inicio</a>
+                </div>
+                <div class="container p-4 bg-white" style="max-width: 900px;">
+                    <div class="align-self-center">
+                        <form method="post" th:action="@{/mascotas/busqueda}"
+                              class="was-validated">
+                            <div class="d-flex flew-row justify-content-evenly">
+                                <input type="text" class="form-control" th:value="${texto}" name="texto">
+
+                                <button type="submit" class="btn btn-outline-primary mx-1"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                                <a href="/mascotas"  class="btn btn-outline-danger"><i class="fa-sharp fa-solid fa-xmark"></i></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             <table class="table">
                 <thead>
                     <tr>
