@@ -41,6 +41,7 @@ public class SecurityConfig {
                     .failureUrl("/login?error") // <-- ¡Esto se debe mantener!
                     .permitAll() // Permite acceso a todos al login
                 )
+                
                 // Permite logout para todos
                 .logout(logout -> logout
                     .logoutUrl("/logout")
