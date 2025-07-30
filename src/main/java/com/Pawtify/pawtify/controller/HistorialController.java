@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -88,6 +89,17 @@ public class HistorialController {
         }
 
         return "historial/listado";
+    }
+    
+    @PostMapping("/busqueda")
+    public String query3( @RequestParam() String texto, Model model) {
+        var lista=historialService.consultaSQL(texto);
+        model.addAttribute ("historial", lista);
+        model.addAttribute ("texto", texto);
+
+       
+
+        return "/historial/listado";
     }
 
 }

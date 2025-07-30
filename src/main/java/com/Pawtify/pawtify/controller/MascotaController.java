@@ -25,6 +25,7 @@ public class MascotaController {
         model.addAttribute("listaMascotas", mascotaService.listarTodos());
         return "mascota/listado";
     }
+    
     @GetMapping("/nueva")
     public String mostrarFormularioMascota(Model model) {
         model.addAttribute("mascota", new Mascota());
@@ -73,6 +74,15 @@ public class MascotaController {
             return "mascota/perfil";
         }
         return "redirect:/mascotas";
+    }
+    
+    @PostMapping("/busqueda")
+    public String query3( @RequestParam() String texto, Model model) {
+        var lista=mascotaService.consultaSQL(texto);
+        model.addAttribute ("listaMascotas", lista);
+        model.addAttribute ("texto", texto);
+
+        return "mascota/listado";
     }
 }
 

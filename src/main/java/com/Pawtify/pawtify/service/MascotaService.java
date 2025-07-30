@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MascotaService {
@@ -31,5 +32,11 @@ public class MascotaService {
 
     public Mascota save(Mascota mascota) {
         return mascotaRepository.save(mascota);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Mascota> consultaSQL(String texto) {
+
+        return mascotaRepository.ConsultaSQL(texto);
     }
 }

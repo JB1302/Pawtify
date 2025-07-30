@@ -5,6 +5,7 @@
 package com.Pawtify.pawtify.service;
 
 import com.Pawtify.pawtify.domain.Historial;
+import com.Pawtify.pawtify.domain.Producto;
 import com.Pawtify.pawtify.repository.HistorialRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,12 @@ public class HistorialService {
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Historial> consultaSQL(String texto) {
+
+        return historialRepository.ConsultaSQL(texto);
     }
 
 }
