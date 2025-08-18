@@ -134,6 +134,24 @@
                                             </button>
                                         </form>
                                     </div>
+
+
+                                    <div class="col">
+                                        <form>
+                                            <input type="hidden" th:value="${p.id}"
+                                                   name="id"/>
+
+                                            <input type="hidden" th:value="${p.stock}"
+                                                   name="stock"/>
+                                            
+                                            <button type="button"
+                                                    class="btn btn-light"
+                                                    onclick="addCart(this.form)">
+                                                <i class="fas fa-cart-arrow-down"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    
                                     <div class="col">
                                        
                                         <button type="button"
@@ -142,6 +160,7 @@
                                             th:data-bs-target="'#eliminarModal' + ${p.id}">
                                             <i class="fa-sharp fa-solid fa-eraser"></i> Eliminar
                                         </button>
+                                        
 
                                        
                                         <div class="modal fade"
