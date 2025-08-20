@@ -3,133 +3,135 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head th:fragment="head">
-    <title>Pawtify</title>
-    <meta charset="UTF-8"/>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css"/>
+    <head th:fragment="head">
+        <title>Pawtify</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css"/>
 
-    <style>
-        /* Alertas de stock */
-        .table-danger {
-            --bs-table-bg: #ffebee;
-            --bs-table-striped-bg: #ffcdd2;
-            --bs-table-active-bg: #ef9a9a;
-            --bs-table-hover-bg: #ffcdd2;
-            color: #000;
-        }
-        .text-stock-danger {
-            color: #dc3545 !important;
-            font-weight: bold;
-        }
-        .badge-stock {
-            font-size: 0.75em;
-            padding: 0.35em 0.65em;
-            background-color: #dc3545 !important;
-            color: white;
-        }
-        .stock-warning-icon {
-            color: #dc3545;
-            margin-right: 5px;
-        }
-    </style>
-    
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/rutina.js}"></script>
-</head>
+        <style>
+            /* Alertas de stock */
+            .table-danger {
+                --bs-table-bg: #ffebee;
+                --bs-table-striped-bg: #ffcdd2;
+                --bs-table-active-bg: #ef9a9a;
+                --bs-table-hover-bg: #ffcdd2;
+                color: #000;
+            }
+            .text-stock-danger {
+                color: #dc3545 !important;
+                font-weight: bold;
+            }
+            .badge-stock {
+                font-size: 0.75em;
+                padding: 0.35em 0.65em;
+                background-color: #dc3545 !important;
+                color: white;
+            }
+            .stock-warning-icon {
+                color: #dc3545;
+                margin-right: 5px;
+            }
+        </style>
 
-<body>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/rutina.js}"></script>
+    </head>
 
-<header th:fragment="header" class="header">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="/">Pawtify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <body>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/producto/listado}">Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/producto/carrito}">
-                            <i class="fas fa-shopping-cart"></i> Carrito
-                            <span class="badge bg-danger ms-1"
-                                  th:text="${session.carritoItems != null ? session.carritoItems.size() : 0}">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/mascotas}">
-                            <i class="fas fa-paw"></i> Mis Mascotas
-                        </a>
-                    </li>
-                    <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'CLIENTE')">
-                        <a class="nav-link" th:href="@{/historial/listado}">
-                            <i class="fa-solid fa-list"></i> Historial
-                        </a>
-                    </li>
-                </ul>
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                    <a class="navbar-brand fw-bold" href="/">Pawtify</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="d-flex align-items-center">
-                   
-                    <span class="me-3 fw-bold text-white" sec:authorize="isAuthenticated()">
-                        <i class="fas fa-user"></i> <span sec:authentication="name"></span>
-                    </span>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/producto/listado}">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/producto/carrito}">
+                                    <i class="fas fa-shopping-cart"></i> Carrito
+                                    <span class="badge bg-danger ms-1"
+                                          th:text="${session.carritoItems != null ? session.carritoItems.size() : 0}">0</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/mascotas}">
+                                    <i class="fas fa-paw"></i> Mis Mascotas
+                                </a>
+                            </li>
+                            <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'CLIENTE')">
+                                <a class="nav-link" th:href="@{/historial/listado}">
+                                    <i class="fa-solid fa-list"></i> Historial
+                                </a>
+                            </li>
+                        </ul>
 
-                   
-                    <a class="btn btn-outline-light me-2" th:href="@{/login}" sec:authorize="!isAuthenticated()">Iniciar sesión</a>
-                    <a class="btn btn-warning" th:href="@{/register}" sec:authorize="!isAuthenticated()">Registrarse</a>
+                        <div class="d-flex align-items-center">
 
-                   
-                    <a class="btn btn-success" href="#" sec:authorize="isAuthenticated()">Mi cuenta</a>
+                            <span class="me-3 fw-bold text-white" sec:authorize="isAuthenticated()">
+                                <i class="fas fa-user"></i> <span sec:authentication="name"></span>
+                            </span>
 
-                   
-                    <form th:action="@{/logout}" method="post" 
-                          th:if="${#authorization.expression('isAuthenticated()')}" style="display:inline;">
-                        <button type="submit" class="btn btn-outline-danger ms-2">Cerrar sesión</button>
-                    </form>
+
+                            <a class="btn btn-outline-light me-2" th:href="@{/login}" sec:authorize="!isAuthenticated()">Iniciar sesión</a>
+                            <a class="btn btn-warning" th:href="@{/register}" sec:authorize="!isAuthenticated()">Registrarse</a>
+
+
+                            <a class="btn btn-success" href="#" sec:authorize="isAuthenticated()">Mi cuenta</a>
+
+
+                            <form th:action="@{/logout}" method="post" 
+                                  th:if="${#authorization.expression('isAuthenticated()')}" style="display:inline;">
+                                <button type="submit" class="btn btn-outline-danger ms-2">Cerrar sesión</button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
+            </nav>
+        </header>
 
+        <footer class="bg-secondary text-white mt-auto">
+            <div class="container py-5">
+                <div class="row align-items-center">
+
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h5 class="fw-bold">Suscríbete a nuestras novedades</h5>
+                        <p class="text-white-50 mb-3">Recibe ofertas exclusivas y las últimas noticias de Pawtify.</p>
+                        <form class="d-flex">
+                            <input type="email" class="form-control me-2" placeholder="Tu correo" required>
+                                <button class="btn btn-primary" type="submit">Enviar</button>
+                        </form>
+                    </div>
+
+
+                    <div class="col-md-6 text-md-end text-center">
+                        <a href="/contacto" class="text-white"> Contactar Admin</a>
+                        <a href="/producto/listado" class="text-white me-3">Productos</a>
+                        <a href="/contacto" class="text-white me-3">Contacto</a>
+                        <a href="/" class="text-white">FAQ </a>
+
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
 
-<footer class="bg-secondary text-white mt-auto">
-    <div class="container py-5">
-        <div class="row align-items-center">
-           
-            <div class="col-md-6 mb-4 mb-md-0">
-                <h5 class="fw-bold">Suscríbete a nuestras novedades</h5>
-                <p class="text-white-50 mb-3">Recibe ofertas exclusivas y las últimas noticias de Pawtify.</p>
-                <form class="d-flex">
-                    <input type="email" class="form-control me-2" placeholder="Tu correo" required>
-                    <button class="btn btn-primary" type="submit">Enviar</button>
-                </form>
+
+            <div class="bg-primary text-center p-3">
+                <i class="fa-solid fa-copyright"></i> 2025 <span class="fw-bold">Pawtify</span>
+                <a class="text-white text-decoration-none" href="/">Pawtify.com</a>
             </div>
-            
-            
-            <div class="col-md-6 text-md-end text-center">
-                <a href="/producto/listado" class="text-white me-3">Productos</a>
-                <a href="/contacto" class="text-white me-3">Contacto</a>
-                <a href="/" class="text-white">FAQ</a>
-            </div>
-        </div>
-    </div>
-    
-   
-    <div class="bg-primary text-center p-3">
-        <i class="fa-solid fa-copyright"></i> 2025 <span class="fw-bold">Pawtify</span>
-        <a class="text-white text-decoration-none" href="/">Pawtify.com</a>
-    </div>
-</footer>
+        </footer>
 
 
-</body>
+    </body>
 </html>
