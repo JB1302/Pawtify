@@ -91,52 +91,47 @@
             <table class="table table-striped">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col"  sec:authorize="hasRole('ADMIN')">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Tipo Mascota</th>
                         <th scope="col">Existencias</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Estado Stock</th>
-                        <th scope="col">Activo</th>
+                        <th scope="col" sec:authorize="hasRole('ADMIN')">Estado Stock</th>
+                        <th scope="col"sec:authorize="hasRole('ADMIN')">Activo</th>
                         <!-- Cabecera Acciones solo ADMIN -->
-                        <th scope="col" sec:authorize="hasRole('ADMIN')">Acciones</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     <tr th:each="p : ${productos}" th:class="${p.stock < umbralStock} ? 'table-warning' : ''">
-                        <td>[[${p.id}]]</td>
+                        <td sec:authorize="hasRole('ADMIN')">[[${p.id}]]</td>
                         <td>
-                            <span th:if="${p.stock < umbralStock}" class="text-danger fw-bold">⚠️ </span>
+                            <!-- ⚠️ solo ADMIN -->
+                            <span th:if="${p.stock < umbralStock}" class="text-danger fw-bold" sec:authorize="hasRole('ADMIN')">⚠️ </span>
                             [[${p.nombre}]]
                         </td>
                         <td>[[${p.descripcion}]]</td>
                         <td>[[${p.tipoMascota}]]</td>
-                        <td th:class="${p.stock < umbralStock} ? 'fw-bold text-danger' : ''">
-                            [[${p.stock}]]
-                        </td>
+                        <td th:class="${p.stock < umbralStock} ? 'fw-bold text-danger' : ''">[[${p.stock}]]</td>
                         <td>$[[${#numbers.formatDecimal(p.precio, 1, 2)}]]</td>
-                        <td>
+
+                        <!-- Estado Stock solo ADMIN -->
+                        <td sec:authorize="hasRole('ADMIN')">
                             <span th:if="${p.stock < umbralStock}" class="badge bg-danger">¡STOCK BAJO!</span>
                             <span th:if="${p.stock >= umbralStock}" class="badge bg-success">OK</span>
                         </td>
-                        <td>[[${p.activo} ? 'Sí' : 'No']]</td>
 
-                        <!-- Celda Acciones solo ADMIN -->
+                        <!-- Activo solo ADMIN -->
                         <td sec:authorize="hasRole('ADMIN')">
+                            [[${p.activo} ? 'Sí' : 'No']]
+                        </td>
+
+                        <!-- Columna de acciones -->
+                        <td>
                             <div class="text-center">
                                 <div class="row">
-                                    <!-- Editar solo ADMIN -->
-                                    <div class="col">
-                                        <form th:action="@{/producto/modificar}" th:object="${producto}" method="post">
-                                            <input type="hidden" name="id" th:value="${p.id}"/>
-                                            <button type="submit" class="btn btn-outline-warning btn-sm">
-                                                <i class="fa-sharp fa-solid fa-file-pen"></i> Editar
-                                            </button>
-                                        </form>
-                                    </div>
-
-                                    <!-- Agregar al carrito disponible para todos -->
+                                    <!-- Carrito disponible para TODOS -->
                                     <div class="col">
                                         <form>
                                             <input type="hidden" th:value="${p.id}" name="id"/>
@@ -147,12 +142,21 @@
                                         </form>
                                     </div>
 
-                                    <!-- Eliminar solo ADMIN -->
-                                    <div class="col">
+                                    <!-- Bloque solo ADMIN -->
+                                    <div class="col" sec:authorize="hasRole('ADMIN')">
+                                        <form th:action="@{/producto/modificar}" th:object="${producto}" method="post">
+                                            <input type="hidden" name="id" th:value="${p.id}"/>
+                                            <button type="submit" class="btn btn-outline-warning btn-sm">
+                                                <i class="fa-sharp fa-solid fa-file-pen"></i> Editar
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <div class="col" sec:authorize="hasRole('ADMIN')">
                                         <button type="button"
-                                            class="btn btn-outline-danger btn-sm"
-                                            data-bs-toggle="modal"
-                                            th:data-bs-target="'#eliminarModal' + ${p.id}">
+                                                class="btn btn-outline-danger btn-sm"
+                                                data-bs-toggle="modal"
+                                                th:data-bs-target="'#eliminarModal' + ${p.id}">
                                             <i class="fa-sharp fa-solid fa-eraser"></i> Eliminar
                                         </button>
 
@@ -181,13 +185,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- fin modal eliminar -->
                                     </div>
+                                    <!-- Fin bloque ADMIN -->
                                 </div>
                             </div>
                         </td>
-                        <!-- Fin celda Acciones -->
                     </tr>
+
+
                 </tbody>
             </table>
         </div>
