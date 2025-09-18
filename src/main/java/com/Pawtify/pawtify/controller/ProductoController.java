@@ -27,22 +27,21 @@ public class ProductoController {
     private CarritoService carritoService;
 
     @GetMapping("/listado")
-public String listado(Model model) {
-    var lista = productoService.getProductos(false);
-    final int UMBRAL_STOCK = 10;
-    
-    
-    System.out.println("=== PRODUCTOS CON STOCK BAJO ===");
-    lista.stream()
-         .filter(p -> p.getStock() < UMBRAL_STOCK)
-         .forEach(p -> System.out.println(p.getNombre() + " - Stock: " + p.getStock()));
-    
-    model.addAttribute("productos", lista);
-    model.addAttribute("totalProductos", lista.size());
-    model.addAttribute("umbralStock", UMBRAL_STOCK);
-    
-    return "/producto/listado";
-}
+    public String listado(Model model) {
+        var lista = productoService.getProductos(false);
+        final int UMBRAL_STOCK = 10;
+
+        System.out.println("=== PRODUCTOS CON STOCK BAJO ===");
+        lista.stream()
+             .filter(p -> p.getStock() < UMBRAL_STOCK)
+             .forEach(p -> System.out.println(p.getNombre() + " - Stock: " + p.getStock()));
+
+        model.addAttribute("productos", lista);
+        model.addAttribute("totalProductos", lista.size());
+        model.addAttribute("umbralStock", UMBRAL_STOCK);
+
+        return "/Producto/listado";
+    }
 
     @PostMapping("/eliminar")
     public String eliminar(Producto producto, RedirectAttributes redirectAttributes) {
@@ -65,7 +64,7 @@ public String listado(Model model) {
     public String modificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
         model.addAttribute("producto", producto);
-        return "/producto/modifica";
+        return "/Producto/modifica";
     }
 
     @PostMapping("/guardar")
@@ -91,34 +90,32 @@ public String listado(Model model) {
     }
 
     @PostMapping("/carrito/agregar/{id}")
-public String agregarAlCarrito(
-        @PathVariable Long id,
-        @RequestParam(defaultValue = "1") int cantidad,
-        Principal principal,
-        RedirectAttributes redirect
-) {
-    Producto producto = productoService.getProductoById(id);
-    
-    if (producto.getStock() < cantidad) {
-        redirect.addFlashAttribute("error", 
-            "No hay suficiente stock de " + producto.getNombre() + 
-            ". Solo quedan " + producto.getStock() + " unidades.");
-    } else {
-        carritoService.agregarProducto(id, cantidad, principal.getName());
-        redirect.addFlashAttribute("success", "Producto agregado al carrito");
+    public String agregarAlCarrito(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "1") int cantidad,
+            Principal principal,
+            RedirectAttributes redirect
+    ) {
+        Producto producto = productoService.getProductoById(id);
+
+        if (producto.getStock() < cantidad) {
+            redirect.addFlashAttribute("error",
+                "No hay suficiente stock de " + producto.getNombre() +
+                ". Solo quedan " + producto.getStock() + " unidades.");
+        } else {
+            carritoService.agregarProducto(id, cantidad, principal.getName());
+            redirect.addFlashAttribute("success", "Producto agregado al carrito");
+        }
+
+        return "redirect:/producto/listado";
     }
-    
-    return "redirect:/producto/listado";
-}
-    
+
     @PostMapping("/busqueda")
-    public String query3( @RequestParam() String texto, Model model) {
-        var productos=productoService.consultaSQL(texto);
-        model.addAttribute ("productos", productos);
-        model.addAttribute ("texto", texto);
+    public String query3(@RequestParam() String texto, Model model) {
+        var productos = productoService.consultaSQL(texto);
+        model.addAttribute("productos", productos);
+        model.addAttribute("texto", texto);
 
-       
-
-        return "/producto/listado";
+        return "/Producto/listado";
     }
 }
