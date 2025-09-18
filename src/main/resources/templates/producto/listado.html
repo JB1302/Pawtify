@@ -3,13 +3,14 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-    <head th:replace="~{layout/plantilla :: head}"/>
-    <body class="bg-light d-flex flex-column">
-        <header th:replace="~{layout/plantilla :: header}"/>
-        <main>
-            <section th:replace="~{Producto/fragmentos :: inicio}"/>
-            <section th:replace="~{Producto/fragmentos :: listadoCrudProductos}"/>
-            <section th:replace="~{Producto/fragmentos :: agregar}"/>
-        </main>
-        <footer th:replace="~{layout/plantilla :: footer}"/>
-    </body>
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body class="bg-light d-flex flex-column">
+    <header th:replace="~{layout/plantilla :: header}"></header>
+    <main>
+        <section th:replace="~{producto/fragmentos :: inicio}"></section>
+        <section th:replace="~{producto/fragmentos :: listadoCrudProductos}"></section>
+        <section th:replace="~{producto/fragmentos :: agregar}"></section>
+    </main>
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>
