@@ -40,7 +40,7 @@ public class ProductoController {
         model.addAttribute("totalProductos", lista.size());
         model.addAttribute("umbralStock", UMBRAL_STOCK);
 
-        return "/Producto/listado";
+        return "producto/listado";
     }
 
     @PostMapping("/eliminar")
@@ -64,7 +64,7 @@ public class ProductoController {
     public String modificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
         model.addAttribute("producto", producto);
-        return "/Producto/modifica";
+        return "producto/modifica";
     }
 
     @PostMapping("/guardar")
@@ -82,10 +82,10 @@ public class ProductoController {
                     .sum();
             model.addAttribute("carritoItems", items);
             model.addAttribute("total", total);
-            return "/Producto/carrito";
+            return "producto/carrito";
         } catch (Exception e) {
             model.addAttribute("error", "Error al cargar el carrito");
-            return "/Producto/carrito";
+            return "producto/carrito";
         }
     }
 
@@ -116,6 +116,6 @@ public class ProductoController {
         model.addAttribute("productos", productos);
         model.addAttribute("texto", texto);
 
-        return "/Producto/listado";
+        return "producto/listado";
     }
 }
